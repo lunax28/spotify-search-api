@@ -17,6 +17,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.*;
 
 /**
  *
@@ -26,9 +27,14 @@ public class AlbumUpc {
 
     private String link;
     private JsonObject jsonObject;
+    private String response;
+    private JSONArray jArray;
+    private String albumsJson;
 
     public AlbumUpc(String link) {
         this.link = link;
+        this.response="";
+        this.jsonObject = null;
     }
     
     
@@ -81,7 +87,7 @@ public class AlbumUpc {
     
     
     public JsonObject getJson(String link){
-        String response = "";
+        
         
         try {
             URL url = new URL(link);
@@ -115,6 +121,84 @@ public class AlbumUpc {
         //System.out.println("PRINTING JSON: " + this.jsonObject.toString());
         return this.jsonObject;      
         
+    }
+    
+    
+    public String getAlbumId(){
+        
+        
+        JsonObject jsonId = new JsonParser().parse(response).getAsJsonObject();
+        this.albumsJson = jsonId.get("albums").toString();    
+        System.out.println(this.albumsJson);
+        
+        jsonId = new JsonParser().parse(this.albumsJson).getAsJsonObject();
+        
+        String items = jsonId.get("items").toString(); 
+        
+        System.out.println("ITEMS: " + items);
+        
+        
+
+        JSONObject jsonObj = new JSONObject(this.albumsJson);
+        this.jArray = jsonObj.getJSONArray("items");
+        
+        System.out.println("ARRAY: " + jArray.toString());
+
+        //array.length() >= 3
+        JSONObject job = jArray.getJSONObject(0);
+        System.out.println("JOB: " + job.toString());
+        String albumId = job.getString("id");
+        System.out.println("ID: " + albumId);
+        
+        
+        return albumId;
+        
+        
+    }
+    
+    
+    public String getAlbumName(){
+        
+       
+        //array.length() >= 3
+        JSONObject job = jArray.getJSONObject(0);
+        System.out.println("JOB: " + job.toString());
+        String albumName = job.getString("name");
+        System.out.println("NAME: " + albumName);
+        
+        
+        return albumName;
+        
+        
+        
+        
+    }
+    
+    
+    
+    public String showCoverLink(){
+        System.out.println("#1#1#1#1#");
+        System.out.println("#1#1#1#1#");
+        System.out.println("#1#1#1#1#\n");
+        
+        JSONObject jsonObj = new JSONObject(this.albumsJson);
+        this.jArray = jsonObj.getJSONArray("items");
+        
+        //System.out.println("ARRAY: " + jArray.toString());
+
+        //array.length() >= 3
+        JSONObject job = this.jArray.getJSONObject(0);
+        System.out.println("JOB: " + job.toString());
+        
+        System.out.println("IMAGES: " + job.getJSONArray("images").toString());
+  
+        JSONArray jArrayImage = job.getJSONArray("images");
+        JSONObject jobImage = jArrayImage.getJSONObject(0);
+        System.out.println("JOB: " + jobImage.toString());
+        String coverURL = jobImage.getString("url");
+        System.out.println("URL: " + coverURL);
+        
+        return coverURL;
     }
 
 }

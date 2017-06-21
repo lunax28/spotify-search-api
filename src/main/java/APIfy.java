@@ -2,6 +2,7 @@
 import SpotifyUpcAlbumSearch.AlbumUpc;
 import com.google.gson.JsonObject;
 import com.mycompany.spotifymaven.SpotifyApi;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -16,6 +17,8 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /*
@@ -23,13 +26,12 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author equilibrium
  */
 public class APIfy extends javax.swing.JFrame {
-    
+
     private JsonObject jsonObject;
 
     /**
@@ -51,6 +53,11 @@ public class APIfy extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         SearchButton = new javax.swing.JButton();
+        albumID = new javax.swing.JTextField();
+        albumIdLabel = new javax.swing.JLabel();
+        albumNameTextField = new javax.swing.JTextField();
+        albumNameLabel = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -74,6 +81,25 @@ public class APIfy extends javax.swing.JFrame {
                 SearchButtonActionPerformed(evt);
             }
         });
+
+        albumID.setEditable(false);
+        albumID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                albumIDActionPerformed(evt);
+            }
+        });
+
+        albumIdLabel.setText("Album ID");
+
+        albumNameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                albumNameTextFieldActionPerformed(evt);
+            }
+        });
+
+        albumNameLabel.setText("Album Name");
+
+        jLabel2.setText("jLabel2");
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -107,23 +133,50 @@ public class APIfy extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(171, 171, 171)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SearchButton))
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(albumIdLabel)
+                            .addComponent(albumNameLabel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SearchButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(albumID, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(albumNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(314, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchButton))
+                .addGap(18, 18, 18)
+                .addComponent(albumIdLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(albumID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(albumNameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SearchButton)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addComponent(albumNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -134,7 +187,7 @@ public class APIfy extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void PasteMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasteMenuActionPerformed
-       Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
         Clipboard clipboard = toolkit.getSystemClipboard();
         String result;
         try {
@@ -153,26 +206,60 @@ public class APIfy extends javax.swing.JFrame {
     }//GEN-LAST:event_CopyMenuActionPerformed
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
-        if(jTextField1.getText().isEmpty()){
+        if (jTextField1.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Empty UPC field");
             return;
         }
-        
-               
-        String link = "https://api.spotify.com/v1/search?q=upc:" + jTextField1.getText() + "&type=album";
-        
-        System.out.println("The link is: " + link);
-            
-        AlbumUpc album = new AlbumUpc(link);
-        
-        this.jsonObject = album.getJson(link);
-        
-        System.out.println(this.jsonObject.toString());
-    }//GEN-LAST:event_SearchButtonActionPerformed
- 
-                                          
 
-    
+        String link = "https://api.spotify.com/v1/search?q=upc:" + jTextField1.getText() + "&type=album";
+
+        System.out.println("The link is: " + link);
+
+        AlbumUpc album = new AlbumUpc(link);
+
+        this.jsonObject = album.getJson(link);
+
+        //albumID.setText(jsonObject.get("id").toString());
+        System.out.println(this.jsonObject.toString());
+
+        albumID.setText(album.getAlbumId());
+
+        albumNameTextField.setText(album.getAlbumName());
+        //8033772864862
+        System.out.println("LINK: ");
+        //album.showCoverLink();
+        
+        
+        //https://stackoverflow.com/questions/42752611/display-url-image-into-a-jpanel
+        Image coverImage = null;
+        URL url = null;
+        try {
+            url = new URL(album.showCoverLink());
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(APIfy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            coverImage = ImageIO.read(url);
+        } catch (IOException ex) {
+            Logger.getLogger(APIfy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //https://stackoverflow.com/questions/6714045/how-to-resize-jlabel-imageicon
+        ImageIcon imageIcon = new ImageIcon(coverImage); // load the image to a imageIcon
+        Image image = imageIcon.getImage(); // transform it 
+        Image newimg = image.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        imageIcon = new ImageIcon(newimg);  // transform it back
+
+        jLabel2.setIcon(imageIcon);
+    }//GEN-LAST:event_SearchButtonActionPerformed
+
+    private void albumIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_albumIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_albumIDActionPerformed
+
+    private void albumNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_albumNameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_albumNameTextFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -213,7 +300,12 @@ public class APIfy extends javax.swing.JFrame {
     private javax.swing.JMenuItem CopyMenu;
     private javax.swing.JMenuItem PasteMenu;
     private javax.swing.JButton SearchButton;
+    private javax.swing.JTextField albumID;
+    private javax.swing.JLabel albumIdLabel;
+    private javax.swing.JLabel albumNameLabel;
+    private javax.swing.JTextField albumNameTextField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
