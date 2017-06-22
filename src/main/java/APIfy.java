@@ -59,6 +59,16 @@ public class APIfy extends javax.swing.JFrame {
         albumNameLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         coverImageLabel = new javax.swing.JLabel();
+        popularityTextField = new javax.swing.JTextField();
+        popularityLabel = new javax.swing.JLabel();
+        relDateLabel = new javax.swing.JLabel();
+        relDateTextField = new javax.swing.JTextField();
+        labelLabel = new javax.swing.JLabel();
+        labelTextField = new javax.swing.JTextField();
+        linkLabel = new javax.swing.JLabel();
+        linkTextField = new javax.swing.JTextField();
+        artistsLabel = new javax.swing.JLabel();
+        artistsTextField = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -90,8 +100,9 @@ public class APIfy extends javax.swing.JFrame {
             }
         });
 
-        albumIdLabel.setText("Album ID");
+        albumIdLabel.setText("ID");
 
+        albumNameTextField.setEditable(false);
         albumNameTextField.setBackground(new java.awt.Color(234, 237, 243));
         albumNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,9 +110,62 @@ public class APIfy extends javax.swing.JFrame {
             }
         });
 
-        albumNameLabel.setText("Album Name");
+        albumNameLabel.setText("Name");
+
+        jLabel2.setBackground(new java.awt.Color(234, 237, 243));
+        jLabel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         coverImageLabel.setText("Cover");
+
+        popularityTextField.setEditable(false);
+        popularityTextField.setBackground(new java.awt.Color(234, 237, 243));
+        popularityTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popularityTextFieldActionPerformed(evt);
+            }
+        });
+
+        popularityLabel.setText("Popularity");
+
+        relDateLabel.setText("Release Date");
+
+        relDateTextField.setEditable(false);
+        relDateTextField.setBackground(new java.awt.Color(234, 237, 243));
+        relDateTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                relDateTextFieldActionPerformed(evt);
+            }
+        });
+
+        labelLabel.setText("Label");
+
+        labelTextField.setEditable(false);
+        labelTextField.setBackground(new java.awt.Color(234, 237, 243));
+        labelTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                labelTextFieldActionPerformed(evt);
+            }
+        });
+
+        linkLabel.setText("Link");
+
+        linkTextField.setEditable(false);
+        linkTextField.setBackground(new java.awt.Color(234, 237, 243));
+        linkTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                linkTextFieldActionPerformed(evt);
+            }
+        });
+
+        artistsLabel.setText("Artists");
+
+        artistsTextField.setEditable(false);
+        artistsTextField.setBackground(new java.awt.Color(234, 237, 243));
+        artistsTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                artistsTextFieldActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -137,53 +201,87 @@ public class APIfy extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(albumIdLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SearchButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(albumID, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(albumNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(17, 17, 17)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(artistsLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(linkLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(albumNameLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(albumIdLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(popularityLabel, javax.swing.GroupLayout.Alignment.LEADING)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
+                                        .addComponent(labelLabel)))
+                                .addGap(14, 14, 14))
+                            .addComponent(relDateLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(linkTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(artistsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(popularityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(albumID, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(albumNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(relDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(coverImageLabel)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(coverImageLabel))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(albumNameLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel1)))
-                .addContainerGap(314, Short.MAX_VALUE))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SearchButton)))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SearchButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(linkTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(linkLabel))
                 .addGap(18, 18, 18)
-                .addComponent(albumIdLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(albumID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(artistsLabel)
+                    .addComponent(artistsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(albumNameLabel)
+                    .addComponent(albumNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(albumIdLabel)
+                    .addComponent(albumID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(popularityLabel)
+                    .addComponent(popularityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(albumNameLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(albumNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(relDateLabel)
+                    .addComponent(relDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelLabel)
+                    .addComponent(labelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
                 .addComponent(coverImageLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(9, 9, 9))
         );
 
         pack();
@@ -267,6 +365,26 @@ public class APIfy extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_albumNameTextFieldActionPerformed
 
+    private void popularityTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popularityTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_popularityTextFieldActionPerformed
+
+    private void relDateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relDateTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_relDateTextFieldActionPerformed
+
+    private void labelTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labelTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelTextFieldActionPerformed
+
+    private void linkTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_linkTextFieldActionPerformed
+
+    private void artistsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_artistsTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_artistsTextFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -311,6 +429,8 @@ public class APIfy extends javax.swing.JFrame {
     private javax.swing.JLabel albumIdLabel;
     private javax.swing.JLabel albumNameLabel;
     private javax.swing.JTextField albumNameTextField;
+    private javax.swing.JLabel artistsLabel;
+    private javax.swing.JTextField artistsTextField;
     private javax.swing.JLabel coverImageLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -318,5 +438,13 @@ public class APIfy extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel labelLabel;
+    private javax.swing.JTextField labelTextField;
+    private javax.swing.JLabel linkLabel;
+    private javax.swing.JTextField linkTextField;
+    private javax.swing.JLabel popularityLabel;
+    private javax.swing.JTextField popularityTextField;
+    private javax.swing.JLabel relDateLabel;
+    private javax.swing.JTextField relDateTextField;
     // End of variables declaration//GEN-END:variables
 }
