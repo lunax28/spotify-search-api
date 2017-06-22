@@ -92,7 +92,7 @@ public class AlbumUpc {
         try {
             URL url = new URL(link);
             HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-            String basicAuth = "Bearer " + getToken(); //+ token;
+            String basicAuth = "Bearer " + "BQC9Wag-6GbjoTdBMW7MAyBf85dcUNhkyaq7Vzb--aWmSDHoj5A6XQohcbr3Jm0tRUt4F4VQrZj9R1kGzSIvQg"; //+ token;
             httpCon.setRequestMethod("GET");
             httpCon.setRequestProperty("Authorization", basicAuth);
             
@@ -200,5 +200,34 @@ public class AlbumUpc {
         
         return coverURL;
     }
+    
+    public String getLabelApiId(){
+        
+        
+        JsonObject jsonId = new JsonParser().parse(response).getAsJsonObject();
+        this.albumsJson = jsonId.get("label").toString();
+        
+        
+        System.out.println("LABEL: " + this.albumsJson);
+        
+        return this.albumsJson;
+        
+    }
+    
+    
+    public String getReleaseDateApiId(){
+        
+        JsonObject jsonId = new JsonParser().parse(response).getAsJsonObject();
+        this.albumsJson = jsonId.get("release_date").toString();
+        
+        System.out.println("RELEASE DATE: " + this.albumsJson);
+        
+        return this.albumsJson;
+        
+    }
+    
+    
+    
+    
 
 }

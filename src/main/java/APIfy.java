@@ -1,5 +1,6 @@
 
 import SpotifyUpcAlbumSearch.AlbumUpc;
+import SpotifyUpcAlbumSearch.SystemClipboard;
 import com.google.gson.JsonObject;
 import com.mycompany.spotifymaven.SpotifyApi;
 import java.awt.Image;
@@ -92,8 +93,17 @@ public class APIfy extends javax.swing.JFrame {
             }
         });
 
-        albumID.setEditable(false);
         albumID.setBackground(new java.awt.Color(234, 237, 243));
+        albumID.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                albumIDFocusGained(evt);
+            }
+        });
+        albumID.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                albumIDMouseClicked(evt);
+            }
+        });
         albumID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 albumIDActionPerformed(evt);
@@ -151,6 +161,11 @@ public class APIfy extends javax.swing.JFrame {
 
         linkTextField.setEditable(false);
         linkTextField.setBackground(new java.awt.Color(234, 237, 243));
+        linkTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                linkTextFieldMouseClicked(evt);
+            }
+        });
         linkTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 linkTextFieldActionPerformed(evt);
@@ -172,7 +187,6 @@ public class APIfy extends javax.swing.JFrame {
 
         jMenu2.setText("Edit");
 
-        CopyMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.META_MASK));
         CopyMenu.setText("Copy");
         CopyMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,10 +318,15 @@ public class APIfy extends javax.swing.JFrame {
     }//GEN-LAST:event_PasteMenuActionPerformed
 
     private void CopyMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyMenuActionPerformed
+        
         Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
         String s = jTextField1.getSelectedText();
         StringSelection clipString = new StringSelection(s);
         clip.setContents(clipString, null);
+        
+     
+       
+       
     }//GEN-LAST:event_CopyMenuActionPerformed
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
@@ -330,7 +349,7 @@ public class APIfy extends javax.swing.JFrame {
         albumID.setText(album.getAlbumId());
 
         albumNameTextField.setText(album.getAlbumName());
-        //8033772864862
+        
         System.out.println("LINK: ");
         //album.showCoverLink();
         
@@ -355,6 +374,20 @@ public class APIfy extends javax.swing.JFrame {
         imageIcon = new ImageIcon(newimg);  // transform it back
 
         jLabel2.setIcon(imageIcon);
+        
+        //8033772864862
+        linkTextField.setText("https://play.spotify.com/album/" + albumID.getText());
+        link = "https://api.spotify.com/v1/albums/" + albumID.getText();
+        AlbumUpc albumApiId = new AlbumUpc(link);
+        this.jsonObject = albumApiId.getJson(link);
+        System.out.println("2222");
+        System.out.println("2222");
+        System.out.println("2222");
+        System.out.println("NEW JSON OBJECT: " + this.jsonObject.toString());
+        
+        labelTextField.setText(albumApiId.getLabelApiId());
+        
+        relDateTextField.setText(albumApiId.getReleaseDateApiId());
     }//GEN-LAST:event_SearchButtonActionPerformed
 
     private void albumIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_albumIDActionPerformed
@@ -384,6 +417,23 @@ public class APIfy extends javax.swing.JFrame {
     private void artistsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_artistsTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_artistsTextFieldActionPerformed
+
+    private void albumIDFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_albumIDFocusGained
+        //8033772864862
+        
+    }//GEN-LAST:event_albumIDFocusGained
+
+    private void albumIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_albumIDMouseClicked
+        SystemClipboard clip = new SystemClipboard();
+        clip.copy(albumID.getText());
+       
+    }//GEN-LAST:event_albumIDMouseClicked
+
+    private void linkTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkTextFieldMouseClicked
+        SystemClipboard clip = new SystemClipboard();
+        clip.copy(linkTextField.getText());
+       
+    }//GEN-LAST:event_linkTextFieldMouseClicked
 
     /**
      * @param args the command line arguments
