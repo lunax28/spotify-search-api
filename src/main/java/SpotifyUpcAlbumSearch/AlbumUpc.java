@@ -93,7 +93,7 @@ public class AlbumUpc {
         try {
             URL url = new URL(link);
             HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-            String basicAuth = "Bearer " + "BQD5PgY20-9WFB0xWoKAKF8Lip7z_it6HG__w0lxzdRaS8NGhtx-AfGhumYKK3sO5Zn3tEBjcBqWxxFRlum7bA"; //+ token;
+            String basicAuth = "Bearer " + getToken();//"BQD5PgY20-9WFB0xWoKAKF8Lip7z_it6HG__w0lxzdRaS8NGhtx-AfGhumYKK3sO5Zn3tEBjcBqWxxFRlum7bA"; //+ token;
             httpCon.setRequestMethod("GET");
             httpCon.setRequestProperty("Authorization", basicAuth);
             
@@ -234,10 +234,33 @@ public class AlbumUpc {
         this.albumsJson = jsonId.get("artists").toString();  
         System.out.println("this.albumsJson: " + this.albumsJson);
         
-       
+        this.jArray = new JSONArray(this.albumsJson);
+        System.out.println("JSONArray: " + this.jArray.toString());
+        
+        JSONObject arrayArtists = jArray.getJSONObject(0);
+        System.out.println("arrayArtists: " + arrayArtists.toString());
+        String albumArtists = arrayArtists.getString("name");
+        System.out.println("ARTISTS NAME: " + albumArtists);
+        
+        //this.jArray = jsonObj.getJSONArray("artists");
     
-
-        return "wip";
+        //System.out.println("this.jArray " + this.jArray.toString());
+        return albumArtists;
+    }
+    
+    
+    public String getPopularity(){
+        
+        JsonObject jsonId = new JsonParser().parse(response).getAsJsonObject();
+        this.albumsJson = jsonId.get("popularity").toString();
+        
+        System.out.println("popularity: " + this.albumsJson);
+        
+        return this.albumsJson;
+        
+        
+        
+        
     }
     
     

@@ -388,7 +388,7 @@ public class APIfy extends javax.swing.JFrame {
         labelTextField.setText(albumApiId.getLabelApiId());
         
         relDateTextField.setText(albumApiId.getReleaseDateApiId());
-        
+        popularityTextField.setText(albumApiId.getPopularity());
         
         artistsTextField.setText(albumApiId.getArtistsName());
     }//GEN-LAST:event_SearchButtonActionPerformed
