@@ -370,7 +370,7 @@ public class APIfy extends javax.swing.JFrame {
         //https://stackoverflow.com/questions/6714045/how-to-resize-jlabel-imageicon
         ImageIcon imageIcon = new ImageIcon(coverImage); // load the image to a imageIcon
         Image image = imageIcon.getImage(); // transform it 
-        Image newimg = image.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        Image newimg = image.getScaledInstance(130, 130, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
         imageIcon = new ImageIcon(newimg);  // transform it back
 
         jLabel2.setIcon(imageIcon);
@@ -388,6 +388,9 @@ public class APIfy extends javax.swing.JFrame {
         labelTextField.setText(albumApiId.getLabelApiId());
         
         relDateTextField.setText(albumApiId.getReleaseDateApiId());
+        
+        
+        artistsTextField.setText(albumApiId.getArtistsName());
     }//GEN-LAST:event_SearchButtonActionPerformed
 
     private void albumIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_albumIDActionPerformed

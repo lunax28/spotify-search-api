@@ -5,6 +5,7 @@
  */
 package SpotifyUpcAlbumSearch;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.BufferedReader;
@@ -92,7 +93,7 @@ public class AlbumUpc {
         try {
             URL url = new URL(link);
             HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-            String basicAuth = "Bearer " + "BQC9Wag-6GbjoTdBMW7MAyBf85dcUNhkyaq7Vzb--aWmSDHoj5A6XQohcbr3Jm0tRUt4F4VQrZj9R1kGzSIvQg"; //+ token;
+            String basicAuth = "Bearer " + "BQD5PgY20-9WFB0xWoKAKF8Lip7z_it6HG__w0lxzdRaS8NGhtx-AfGhumYKK3sO5Zn3tEBjcBqWxxFRlum7bA"; //+ token;
             httpCon.setRequestMethod("GET");
             httpCon.setRequestProperty("Authorization", basicAuth);
             
@@ -129,7 +130,7 @@ public class AlbumUpc {
         
         JsonObject jsonId = new JsonParser().parse(response).getAsJsonObject();
         this.albumsJson = jsonId.get("albums").toString();    
-        System.out.println(this.albumsJson);
+        System.out.println("this.albumsJson: " + this.albumsJson);
         
         jsonId = new JsonParser().parse(this.albumsJson).getAsJsonObject();
         
@@ -224,6 +225,19 @@ public class AlbumUpc {
         
         return this.albumsJson;
         
+    }
+    
+    
+    public String getArtistsName(){
+    
+        JsonObject jsonId = new JsonParser().parse(response).getAsJsonObject();
+        this.albumsJson = jsonId.get("artists").toString();  
+        System.out.println("this.albumsJson: " + this.albumsJson);
+        
+       
+    
+
+        return "wip";
     }
     
     
