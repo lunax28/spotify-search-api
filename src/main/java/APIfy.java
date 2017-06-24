@@ -63,6 +63,7 @@ public class APIfy extends javax.swing.JFrame {
         resetButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        infoMenuItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         CopyMenu = new javax.swing.JMenuItem();
         PasteMenu = new javax.swing.JMenuItem();
@@ -181,6 +182,15 @@ public class APIfy extends javax.swing.JFrame {
         });
 
         jMenu1.setText("File");
+
+        infoMenuItem.setText("Info");
+        infoMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                infoMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(infoMenuItem);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -445,6 +455,11 @@ public class APIfy extends javax.swing.JFrame {
         
     }//GEN-LAST:event_resetButtonActionPerformed
 
+    private void infoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoMenuItemActionPerformed
+        JOptionPane.showMessageDialog(this, "Version 1.0\nAlberto Vecchi");
+       
+    }//GEN-LAST:event_infoMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -494,6 +509,7 @@ public class APIfy extends javax.swing.JFrame {
     private javax.swing.JTextField artistsTextField;
     private javax.swing.JLabel coverImageLabel;
     private javax.swing.JLabel coverLabel;
+    private javax.swing.JMenuItem infoMenuItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

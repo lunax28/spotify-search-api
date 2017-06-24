@@ -38,8 +38,6 @@ public class AlbumUpc {
         this.jsonObject = null;
     }
     
-    
-    
     private static String getToken(){
         String json_response = "";
         
@@ -52,7 +50,7 @@ public class AlbumUpc {
             httpCon.setRequestProperty("Authorization", basicAuth);
             
             OutputStreamWriter out = new OutputStreamWriter(
-                    httpCon.getOutputStream());
+            httpCon.getOutputStream());
             out.write("grant_type=client_credentials");
             out.flush();
             //System.out.println(httpCon.getResponseCode());
@@ -77,7 +75,6 @@ public class AlbumUpc {
         
         JsonObject token = new JsonParser().parse(json_response).getAsJsonObject();
         return token.get("access_token").getAsString();
-              
                 
     }
 
@@ -85,11 +82,7 @@ public class AlbumUpc {
         return this.link;
     }
     
-    
-    
     public JsonObject getJson(String link){
-        
-        
         try {
             URL url = new URL(link);
             HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
@@ -124,9 +117,7 @@ public class AlbumUpc {
         
     }
     
-    
     public String getAlbumId(){
-        
         
         JsonObject jsonId = new JsonParser().parse(response).getAsJsonObject();
         this.albumsJson = jsonId.get("albums").toString();    
@@ -137,7 +128,6 @@ public class AlbumUpc {
         String items = jsonId.get("items").toString(); 
         
         System.out.println("ITEMS: " + items);
-        
         
 
         JSONObject jsonObj = new JSONObject(this.albumsJson);
@@ -151,31 +141,17 @@ public class AlbumUpc {
         String albumId = job.getString("id");
         System.out.println("ID: " + albumId);
         
-        
         return albumId;
-        
-        
     }
     
-    
     public String getAlbumName(){
-        
-       
-        //array.length() >= 3
         JSONObject job = jArray.getJSONObject(0);
         System.out.println("JOB: " + job.toString());
         String albumName = job.getString("name");
         System.out.println("NAME: " + albumName);
         
-        
         return albumName;
-        
-        
-        
-        
     }
-    
-    
     
     public String showCoverLink(){
         System.out.println("#1#1#1#1#");
@@ -204,17 +180,13 @@ public class AlbumUpc {
     
     public String getLabelApiId(){
         
-        
         JsonObject jsonId = new JsonParser().parse(response).getAsJsonObject();
         this.albumsJson = jsonId.get("label").toString();
-        
         
         System.out.println("LABEL: " + this.albumsJson);
         
         return this.albumsJson;
-        
     }
-    
     
     public String getReleaseDateApiId(){
         
@@ -226,7 +198,6 @@ public class AlbumUpc {
         return this.albumsJson;
         
     }
-    
     
     public String getArtistsName(){
     
@@ -248,21 +219,14 @@ public class AlbumUpc {
         return albumArtists;
     }
     
-    
     public String getPopularity(){
         
         JsonObject jsonId = new JsonParser().parse(response).getAsJsonObject();
         this.albumsJson = jsonId.get("popularity").toString();
         
         System.out.println("popularity: " + this.albumsJson);
-        
         return this.albumsJson;
-        
-        
-        
-        
     }
-    
     
     public Boolean isAlbum(){
         
@@ -276,14 +240,6 @@ public class AlbumUpc {
         if(total.equals("1")){
             return true;
         }
-        
         return false;
-        
-        
-        
     }
-    
-    
-    
-
 }
