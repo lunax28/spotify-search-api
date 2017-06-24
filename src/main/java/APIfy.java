@@ -2,19 +2,14 @@
 import SpotifyUpcAlbumSearch.AlbumUpc;
 import SpotifyUpcAlbumSearch.SystemClipboard;
 import com.google.gson.JsonObject;
-import com.mycompany.spotifymaven.SpotifyApi;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,17 +17,12 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
- * @author equilibrium
+ * @author Alberto
  */
 public class APIfy extends javax.swing.JFrame {
-
+    //variable for debugging purpose
     private JsonObject jsonObject;
 
     /**
@@ -51,14 +41,14 @@ public class APIfy extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        UpcTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         SearchButton = new javax.swing.JButton();
         albumID = new javax.swing.JTextField();
         albumIdLabel = new javax.swing.JLabel();
         albumNameTextField = new javax.swing.JTextField();
         albumNameLabel = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        coverLabel = new javax.swing.JLabel();
         coverImageLabel = new javax.swing.JLabel();
         popularityTextField = new javax.swing.JTextField();
         popularityLabel = new javax.swing.JLabel();
@@ -70,6 +60,7 @@ public class APIfy extends javax.swing.JFrame {
         linkTextField = new javax.swing.JTextField();
         artistsLabel = new javax.swing.JLabel();
         artistsTextField = new javax.swing.JTextField();
+        resetButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -78,9 +69,9 @@ public class APIfy extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        UpcTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                UpcTextFieldActionPerformed(evt);
             }
         });
 
@@ -122,8 +113,8 @@ public class APIfy extends javax.swing.JFrame {
 
         albumNameLabel.setText("Name");
 
-        jLabel2.setBackground(new java.awt.Color(234, 237, 243));
-        jLabel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        coverLabel.setBackground(new java.awt.Color(234, 237, 243));
+        coverLabel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         coverImageLabel.setText("Cover");
 
@@ -182,6 +173,13 @@ public class APIfy extends javax.swing.JFrame {
             }
         });
 
+        resetButton.setText("RESET!");
+        resetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetButtonActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
 
@@ -215,44 +213,38 @@ public class APIfy extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelLabel)
+                            .addComponent(relDateLabel)
+                            .addComponent(popularityLabel)
+                            .addComponent(albumIdLabel)
+                            .addComponent(albumNameLabel)
+                            .addComponent(artistsLabel)
+                            .addComponent(linkLabel)
+                            .addComponent(jLabel1)
+                            .addComponent(coverImageLabel))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(17, 17, 17)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(artistsLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(linkLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(albumNameLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(albumIdLabel, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(popularityLabel, javax.swing.GroupLayout.Alignment.LEADING)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(14, 14, 14)
-                                        .addComponent(labelLabel)))
-                                .addGap(14, 14, 14))
-                            .addComponent(relDateLabel, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(linkTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(artistsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(popularityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(albumID, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(albumNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(relDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(labelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(linkTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(artistsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(popularityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(albumID, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(albumNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(relDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(UpcTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(SearchButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(resetButton))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(coverImageLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(SearchButton)))
+                        .addContainerGap()
+                        .addComponent(coverLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -261,8 +253,9 @@ public class APIfy extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SearchButton))
+                    .addComponent(UpcTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchButton)
+                    .addComponent(resetButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(linkTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -291,70 +284,69 @@ public class APIfy extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelLabel)
                     .addComponent(labelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                .addGap(34, 34, 34)
                 .addComponent(coverImageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(coverLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void UpcTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpcTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_UpcTextFieldActionPerformed
 
+    //Code to copy and paste from the SystemClipboard
     private void PasteMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasteMenuActionPerformed
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Clipboard clipboard = toolkit.getSystemClipboard();
         String result;
         try {
             result = (String) clipboard.getData(DataFlavor.stringFlavor);
-            jTextField1.setText(result);
+            UpcTextField.setText(result);
         } catch (UnsupportedFlavorException | IOException ex) {
             Logger.getLogger(APIfy.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_PasteMenuActionPerformed
 
     private void CopyMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyMenuActionPerformed
-        
         Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
-        String s = jTextField1.getSelectedText();
+        String s = UpcTextField.getSelectedText();
         StringSelection clipString = new StringSelection(s);
         clip.setContents(clipString, null);
-        
-     
-       
-       
     }//GEN-LAST:event_CopyMenuActionPerformed
-
+    
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
-        if (jTextField1.getText().isEmpty()) {
+        if (UpcTextField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Empty UPC field");
             return;
         }
-
-        String link = "https://api.spotify.com/v1/search?q=upc:" + jTextField1.getText() + "&type=album";
-
-        System.out.println("The link is: " + link);
-
+        
+        System.out.println("####\nUPC: " + UpcTextField.getText() + "\n####");
+        
+        //I build the first link to query the API with a link + search query (UPC)
+        String link = "https://api.spotify.com/v1/search?q=upc:" + UpcTextField.getText() + "&type=album";
+        System.out.println("UPC QUERY LINK:: " + link);
+        
+        //Instantiating album object
         AlbumUpc album = new AlbumUpc(link);
-
-        this.jsonObject = album.getJson(link);
-
-        //albumID.setText(jsonObject.get("id").toString());
+        
+        //calling getJson to get a Json from the GET request. I proceed to printout the response for debugging purposes
+        this.jsonObject = album.getJson(link);        
         System.out.println(this.jsonObject.toString());
-
+        
+        //checking whethere the upc given corresponds to an actual spotify album
+        if(!album.isAlbum()){
+            JOptionPane.showMessageDialog(this, "UPC NOT FOUND!");
+            return;            
+        }
+        //I begin extracting json values thanks to the AlbumUpc helper class        
         albumID.setText(album.getAlbumId());
-
-        albumNameTextField.setText(album.getAlbumName());
-        
-        System.out.println("LINK: ");
-        //album.showCoverLink();
-        
-        
-        //https://stackoverflow.com/questions/42752611/display-url-image-into-a-jpanel
+        albumNameTextField.setText(album.getAlbumName());        
+               
+        //Extracting and showing the album cover thanks to: https://stackoverflow.com/questions/42752611/display-url-image-into-a-jpanel
         Image coverImage = null;
         URL url = null;
         try {
@@ -367,29 +359,30 @@ public class APIfy extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(APIfy.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //https://stackoverflow.com/questions/6714045/how-to-resize-jlabel-imageicon
+        //Resizing the cover thanks to: https://stackoverflow.com/questions/6714045/how-to-resize-jlabel-imageicon
         ImageIcon imageIcon = new ImageIcon(coverImage); // load the image to a imageIcon
         Image image = imageIcon.getImage(); // transform it 
-        Image newimg = image.getScaledInstance(130, 130, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        Image newimg = image.getScaledInstance(132, 132, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
         imageIcon = new ImageIcon(newimg);  // transform it back
 
-        jLabel2.setIcon(imageIcon);
+        coverLabel.setIcon(imageIcon);
         
         //8033772864862
+        
+        //album web link
         linkTextField.setText("https://play.spotify.com/album/" + albumID.getText());
+        
+        //Instantiating a new AlbumUpc object passing a new endpoint to get additional info
         link = "https://api.spotify.com/v1/albums/" + albumID.getText();
         AlbumUpc albumApiId = new AlbumUpc(link);
+        //calling again getJson to retrieve a different Json
         this.jsonObject = albumApiId.getJson(link);
-        System.out.println("2222");
-        System.out.println("2222");
-        System.out.println("2222");
-        System.out.println("NEW JSON OBJECT: " + this.jsonObject.toString());
+        //System.out.println("NEW JSON OBJECT: " + this.jsonObject.toString());
+        
         
         labelTextField.setText(albumApiId.getLabelApiId());
-        
         relDateTextField.setText(albumApiId.getReleaseDateApiId());
         popularityTextField.setText(albumApiId.getPopularity());
-        
         artistsTextField.setText(albumApiId.getArtistsName());
     }//GEN-LAST:event_SearchButtonActionPerformed
 
@@ -438,6 +431,20 @@ public class APIfy extends javax.swing.JFrame {
        
     }//GEN-LAST:event_linkTextFieldMouseClicked
 
+    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
+        
+      UpcTextField.setText("");
+      popularityTextField.setText("");
+      linkTextField.setText("");
+      relDateTextField.setText("");
+      artistsTextField.setText("");
+      albumID.setText("");
+      albumNameTextField.setText("");
+      coverLabel.setIcon(null);
+      labelTextField.setText("");
+        
+    }//GEN-LAST:event_resetButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -478,6 +485,7 @@ public class APIfy extends javax.swing.JFrame {
     private javax.swing.JMenuItem CopyMenu;
     private javax.swing.JMenuItem PasteMenu;
     private javax.swing.JButton SearchButton;
+    private javax.swing.JTextField UpcTextField;
     private javax.swing.JTextField albumID;
     private javax.swing.JLabel albumIdLabel;
     private javax.swing.JLabel albumNameLabel;
@@ -485,12 +493,11 @@ public class APIfy extends javax.swing.JFrame {
     private javax.swing.JLabel artistsLabel;
     private javax.swing.JTextField artistsTextField;
     private javax.swing.JLabel coverImageLabel;
+    private javax.swing.JLabel coverLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelLabel;
     private javax.swing.JTextField labelTextField;
     private javax.swing.JLabel linkLabel;
@@ -499,5 +506,6 @@ public class APIfy extends javax.swing.JFrame {
     private javax.swing.JTextField popularityTextField;
     private javax.swing.JLabel relDateLabel;
     private javax.swing.JTextField relDateTextField;
+    private javax.swing.JButton resetButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -264,6 +264,25 @@ public class AlbumUpc {
     }
     
     
+    public Boolean isAlbum(){
+        
+        JsonObject jsonId = new JsonParser().parse(response).getAsJsonObject();
+        this.albumsJson = jsonId.get("albums").toString();    
+        jsonId = new JsonParser().parse(this.albumsJson).getAsJsonObject();
+        
+        String total = jsonId.get("total").toString(); 
+        System.out.println("TOTAL: " + total);
+        
+        if(total.equals("1")){
+            return true;
+        }
+        
+        return false;
+        
+        
+        
+    }
+    
     
     
 

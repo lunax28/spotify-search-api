@@ -64,54 +64,44 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="labelLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="relDateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="popularityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="albumIdLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="albumNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="artistsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="linkLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="coverImageLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="17" pref="17" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="artistsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="linkLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="albumNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="albumIdLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="popularityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
-                                      <Component id="labelLabel" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="labelTextField" alignment="0" min="-2" pref="321" max="-2" attributes="0"/>
+                                  <Component id="linkTextField" alignment="0" min="-2" pref="440" max="-2" attributes="0"/>
+                                  <Component id="artistsTextField" alignment="0" min="-2" pref="440" max="-2" attributes="0"/>
+                                  <Component id="popularityTextField" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
+                                  <Component id="albumID" alignment="0" min="-2" pref="281" max="-2" attributes="0"/>
+                                  <Component id="albumNameTextField" alignment="0" min="-2" pref="430" max="-2" attributes="0"/>
+                                  <Component id="relDateTextField" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="relDateLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelTextField" alignment="0" min="-2" pref="321" max="-2" attributes="0"/>
-                          <Component id="linkTextField" alignment="0" min="-2" pref="440" max="-2" attributes="0"/>
-                          <Component id="artistsTextField" alignment="0" min="-2" pref="440" max="-2" attributes="0"/>
-                          <Component id="popularityTextField" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
-                          <Component id="albumID" alignment="0" min="-2" pref="281" max="-2" attributes="0"/>
-                          <Component id="albumNameTextField" alignment="0" min="-2" pref="430" max="-2" attributes="0"/>
-                          <Component id="relDateTextField" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="UpcTextField" min="-2" pref="120" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="SearchButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="resetButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
-                      <Component id="coverImageLabel" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" pref="138" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="SearchButton" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="coverLabel" min="-2" pref="138" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="93" max="32767" attributes="0"/>
@@ -124,8 +114,9 @@
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="UpcTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="SearchButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="resetButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="26" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -162,19 +153,19 @@
                   <Component id="labelLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelTextField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="coverImageLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="coverLabel" min="-2" pref="127" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" pref="127" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="UpcTextField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UpcTextFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -223,7 +214,7 @@
         <Property name="text" type="java.lang.String" value="Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="coverLabel">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f3" green="ed" red="ea" type="rgb"/>
@@ -319,6 +310,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="artistsTextFieldActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="resetButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="RESET!"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resetButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
