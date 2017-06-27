@@ -50,6 +50,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -71,10 +72,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="coverLabel" min="-2" pref="133" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="labelLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="relDateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -109,10 +111,6 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="coverLabel" min="-2" pref="138" max="-2" attributes="0"/>
-                  </Group>
               </Group>
               <EmptySpace pref="93" max="32767" attributes="0"/>
           </Group>
@@ -128,7 +126,7 @@
                   <Component id="SearchButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="resetButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="linkTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="linkLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -165,9 +163,9 @@
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="coverImageLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="coverLabel" min="-2" pref="127" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="coverLabel" min="-2" pref="133" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -216,6 +214,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="albumNameTextFieldMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="albumNameTextFieldActionPerformed"/>
       </Events>
     </Component>
@@ -249,6 +248,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="popularityTextFieldMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="popularityTextFieldActionPerformed"/>
       </Events>
     </Component>
@@ -270,6 +270,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="relDateTextFieldMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="relDateTextFieldActionPerformed"/>
       </Events>
     </Component>
@@ -286,6 +287,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelTextFieldMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="labelTextFieldActionPerformed"/>
       </Events>
     </Component>
@@ -319,6 +321,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="artistsTextFieldMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="artistsTextFieldActionPerformed"/>
       </Events>
     </Component>

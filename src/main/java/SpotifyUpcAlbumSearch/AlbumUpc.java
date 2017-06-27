@@ -5,7 +5,7 @@
  */
 package SpotifyUpcAlbumSearch;
 
-import com.google.gson.JsonElement;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.BufferedReader;
@@ -237,9 +237,6 @@ public class AlbumUpc {
         String total = jsonId.get("total").toString(); 
         System.out.println("TOTAL: " + total);
         
-        if(total.equals("1")){
-            return true;
-        }
-        return false;
+        return total.equals("1");
     }
 }

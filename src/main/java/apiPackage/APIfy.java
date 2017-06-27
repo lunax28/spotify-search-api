@@ -26,12 +26,14 @@ import javax.swing.JOptionPane;
 public class APIfy extends javax.swing.JFrame {
     //variable for debugging purpose
     private JsonObject jsonObject;
+    private SystemClipboard clip;
 
     /**
      * Creates new form NewJFrame
      */
     public APIfy() {
         initComponents();
+        this.clip = new SystemClipboard();
     }
 
     /**
@@ -71,6 +73,7 @@ public class APIfy extends javax.swing.JFrame {
         PasteMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         UpcTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,6 +111,11 @@ public class APIfy extends javax.swing.JFrame {
 
         albumNameTextField.setEditable(false);
         albumNameTextField.setBackground(new java.awt.Color(234, 237, 243));
+        albumNameTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                albumNameTextFieldMouseClicked(evt);
+            }
+        });
         albumNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 albumNameTextFieldActionPerformed(evt);
@@ -123,6 +131,11 @@ public class APIfy extends javax.swing.JFrame {
 
         popularityTextField.setEditable(false);
         popularityTextField.setBackground(new java.awt.Color(234, 237, 243));
+        popularityTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                popularityTextFieldMouseClicked(evt);
+            }
+        });
         popularityTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 popularityTextFieldActionPerformed(evt);
@@ -135,6 +148,11 @@ public class APIfy extends javax.swing.JFrame {
 
         relDateTextField.setEditable(false);
         relDateTextField.setBackground(new java.awt.Color(234, 237, 243));
+        relDateTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                relDateTextFieldMouseClicked(evt);
+            }
+        });
         relDateTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 relDateTextFieldActionPerformed(evt);
@@ -145,6 +163,11 @@ public class APIfy extends javax.swing.JFrame {
 
         labelTextField.setEditable(false);
         labelTextField.setBackground(new java.awt.Color(234, 237, 243));
+        labelTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelTextFieldMouseClicked(evt);
+            }
+        });
         labelTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 labelTextFieldActionPerformed(evt);
@@ -170,6 +193,11 @@ public class APIfy extends javax.swing.JFrame {
 
         artistsTextField.setEditable(false);
         artistsTextField.setBackground(new java.awt.Color(234, 237, 243));
+        artistsTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                artistsTextFieldMouseClicked(evt);
+            }
+        });
         artistsTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 artistsTextFieldActionPerformed(evt);
@@ -223,9 +251,10 @@ public class APIfy extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(coverLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelLabel)
                             .addComponent(relDateLabel)
@@ -253,10 +282,7 @@ public class APIfy extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(SearchButton)
                                 .addGap(18, 18, 18)
-                                .addComponent(resetButton))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(coverLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(resetButton)))))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -268,7 +294,7 @@ public class APIfy extends javax.swing.JFrame {
                     .addComponent(UpcTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SearchButton)
                     .addComponent(resetButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(linkTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(linkLabel))
@@ -298,9 +324,9 @@ public class APIfy extends javax.swing.JFrame {
                     .addComponent(labelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(coverImageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(coverLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(coverLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
 
         pack();
@@ -374,7 +400,7 @@ public class APIfy extends javax.swing.JFrame {
         //Resizing the cover thanks to: https://stackoverflow.com/questions/6714045/how-to-resize-jlabel-imageicon
         ImageIcon imageIcon = new ImageIcon(coverImage); // load the image to a imageIcon
         Image image = imageIcon.getImage(); // transform it 
-        Image newimg = image.getScaledInstance(132, 132, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        Image newimg = image.getScaledInstance(135, 135, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
         imageIcon = new ImageIcon(newimg);  // transform it back
 
         coverLabel.setIcon(imageIcon);
@@ -432,13 +458,13 @@ public class APIfy extends javax.swing.JFrame {
     }//GEN-LAST:event_albumIDFocusGained
 
     private void albumIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_albumIDMouseClicked
-        SystemClipboard clip = new SystemClipboard();
+       
         clip.copy(albumID.getText());
        
     }//GEN-LAST:event_albumIDMouseClicked
 
     private void linkTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkTextFieldMouseClicked
-        SystemClipboard clip = new SystemClipboard();
+       
         clip.copy(linkTextField.getText());
        
     }//GEN-LAST:event_linkTextFieldMouseClicked
@@ -461,6 +487,31 @@ public class APIfy extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Version 1.0\nAlberto Vecchi");
        
     }//GEN-LAST:event_infoMenuItemActionPerformed
+
+    private void popularityTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_popularityTextFieldMouseClicked
+        
+        clip.copy(popularityTextField.getText());
+    }//GEN-LAST:event_popularityTextFieldMouseClicked
+
+    private void albumNameTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_albumNameTextFieldMouseClicked
+        
+        clip.copy(albumNameTextField.getText());
+    }//GEN-LAST:event_albumNameTextFieldMouseClicked
+
+    private void artistsTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_artistsTextFieldMouseClicked
+       
+        clip.copy(artistsTextField.getText());
+    }//GEN-LAST:event_artistsTextFieldMouseClicked
+
+    private void relDateTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_relDateTextFieldMouseClicked
+        
+        clip.copy(relDateTextField.getText());
+    }//GEN-LAST:event_relDateTextFieldMouseClicked
+
+    private void labelTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelTextFieldMouseClicked
+        
+        clip.copy(labelTextField.getText());
+    }//GEN-LAST:event_labelTextFieldMouseClicked
 
     /**
      * @param args the command line arguments
